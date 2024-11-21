@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="historique">
+      <h3>Historique des messages</h3>
+      <!-- Affichage des messages avec destinataires -->
+      <ul>
+        <li *ngFor="let message of messages">
+          <strong>{{ message.recipient }}:</strong> {{ message.text }}
+        </li>
+      </ul>
+    </div>
+    
+    <div class="messagerie">
+  
+      <!-- Affichage de la blague récupérée -->
+      <div *ngIf="joke">
+        <h3>MESSAGERIE</h3>
+      </div>
+    
+      <!-- Section pour saisir un texte et un destinataire -->
+      <div>
+        <input [(ngModel)]="newRecipient" placeholder="Destinataire">
+        <input [(ngModel)]="newText" placeholder="Bonjour Thomas">
+        <button (click)="addMessage()">Envoyer</button>
+      </div>
+    </div>
+  </div>
+  
