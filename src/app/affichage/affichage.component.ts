@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PublicationService } from '../publication.service'; // Import du service
 import { FormsModule } from '@angular/forms'; // Import du FormsModule
 import { CommonModule } from '@angular/common'; // Import du CommonModule
+import { Router } from '@angular/router'; // Import du Router
 
 @Component({
   selector: 'app-affichage',
@@ -16,7 +17,7 @@ export class AffichageComponent implements OnInit {
   newRecipient: string = '';   // Destinataire du message
   messages: { text: string, recipient: string }[] = [];  // Tableau pour stocker les messages et leurs destinataires
 
-  constructor(private publicationService: PublicationService) { }
+  constructor(private publicationService: PublicationService, private router: Router) { } // Injection du Router
 
   ngOnInit(): void {
     // Appel de la méthode du service pour récupérer la blague
@@ -35,4 +36,9 @@ export class AffichageComponent implements OnInit {
       this.newRecipient = '';  // Réinitialise le champ du destinataire
     }
   }
+
+  onButtonClick() {
+    localStorage.setItem('isAuthenticated', "false");
+    this.router.navigate(['/']); // Redirection vers la route '/login'
+  } 
 }
